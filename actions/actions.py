@@ -19,6 +19,7 @@ from rasa_sdk.executor import CollectingDispatcher
 import datetime
 from datetime import datetime, timedelta
 import os.path
+import os
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -177,12 +178,11 @@ class ActionDoEvent(Action):
         
         
 import pinecone
-import streamlit as st
 from sentence_transformers import SentenceTransformer
 from transformers import BartTokenizer, BartForConditionalGeneration
 
-min_length = 200
-max_length = 400
+min_length = 20
+max_length = 40
 
 
 class BartGenerator:
@@ -205,10 +205,10 @@ def init_models():
     generator = BartGenerator("vblagoje/bart_lfqa")
     return retriever, generator
 
-PINECONE_KEY = "84cef4db-2780-44fa-ac4f-e4c68e333546"
+PINECONE_KEY = os.environ["PINECONE_API_KEY"]
 
 def init_pinecone():
-    pinecone.init(api_key=PINECONE_KEY, environment="us-west1-gcp")  # get a free api key from app.pinecone.io
+    pinecone.init(api_key=PINECONE_KEY, environment="us-east1-gcp")  
     return pinecone.Index("abstractive-question-answering")
 
 retriever, generator = init_models()
@@ -231,11 +231,12 @@ def format_query(query, context):
 class ActionGenAnswer(Action):
 
     def name(self) -> Text:
-        return "action_hello_world"
+        return "action_gen_answer"
 
     def run(self, dispatcher: CollectingDispatcher,
             tracker: Tracker,
             domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+                
         query = tracker.latest_message['text']
         
         if query != "":
@@ -253,7 +254,7 @@ class ActionGenAnswer(Action):
          
 
 
-# get last user message
+
 
         
     
