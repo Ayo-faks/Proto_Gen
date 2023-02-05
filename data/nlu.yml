@@ -100,6 +100,13 @@ nlu:
     - Get Event
     - what is on my calendar
 
+- intent: general_knowledge
+  examples: |
+    - when was the first electric power system built
+    - who was the 12th person on the moon and when did they land?
+    - who is obama?
+    - where is mount sinai?
+
 # - intent: inform_event
 #   examples: |
 #     - i want to [dance](event)

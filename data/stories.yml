@@ -38,3 +38,14 @@ stories:
 #     - active_loop: restaurant_form
 #     - active_loop: null
 #     - action: utter_goodbye
+
+- story: general_knowledge
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: general_knowledge
+  - action: action_gen_answer
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye
+  

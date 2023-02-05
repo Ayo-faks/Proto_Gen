@@ -9,6 +9,7 @@ intents:
 - mood_unhappy
 - add_event
 - get_event
+- general_knowledge
 # - inform_event_name
 # - inform_time
 
@@ -46,6 +47,7 @@ actions:
   - action_hello_world
   - action_add_event
   - action_get_event
+  - action_gen_answer
 
 responses:
   utter_ask_restaurant_form_event:
